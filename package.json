@@ -1,0 +1,26 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "nodemon": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cryptr": "^6.0.2",
+    "decrypt": "^0.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.14.0",
+    "md5": "^2.3.0",
+    "mongodb": "^4.2.2",
+    "mongoose": "^5.13.13",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "two-step-auth": "^1.1.2"
+  }
+}
