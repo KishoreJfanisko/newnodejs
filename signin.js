@@ -1,4 +1,3 @@
-const add=require("../connection/connect");
 var md5 = require('md5');
 
 exports.signin=async(req,res)=>{
@@ -7,7 +6,6 @@ exports.signin=async(req,res)=>{
     var password = req.body.password;
     const mobilenum = req.body.mobilenum;
     const encryptedPassword = md5(password);
-    var flag=0;
 
     const { MongoClient } = require('mongodb');
     const url = 'mongodb://localhost:27017';
@@ -103,7 +101,7 @@ exports.signin=async(req,res)=>{
             signup_success: "signup successfull"
         });
     }
-    else if(filteredDocs.length==1)
+    else if(filteredDocs.length>=1)
     {   console.log("user exists");
         res.json({
             signup_error: "User already exists"

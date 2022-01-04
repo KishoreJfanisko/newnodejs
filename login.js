@@ -1,5 +1,3 @@
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
 var md5 = require('md5');
 
 exports.login=(req,res)=>
@@ -21,7 +19,7 @@ exports.login=(req,res)=>
     if(filteredDocs.length==0)
     {
         res.json({
-            Login_error:"Email and password not matched"
+            Login_error:"Email and password not matched or user not exist"
         });
     }
 
@@ -43,7 +41,6 @@ exports.login=(req,res)=>
             }
         )
     }
-    return 'done.';
 }
     Loginvalidate();
 }
