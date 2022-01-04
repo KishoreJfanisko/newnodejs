@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const date = require('date-and-time');
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
 
@@ -10,11 +11,18 @@ const collection = db.collection('contents');
 exports.Getcontent=async(req,res)=>{
 
     await client.connect();
-
-    const findResult = await collection.find({"timestamp":{$lt : new Date(),$gt: new Date(new Date().getTime()-(24*60*60*1000))}})
-    .sort("timestamp",-1).limit(10).toArray();
+    const findResult = await collection.find({}).toArray();
     res.json({
-      "Found documents" : findResult
+      "Found contents" : findResult
+    });
+  
+  }
+  exports.Getsortedcontent=async(req,res)=>{
+
+    await client.connect();
+    const findResult = await collection.find({}).sort("timestamp",-1).toArray();
+    res.json({
+      "Found contents" : findResult[0]
     });
   
   }
@@ -23,11 +31,13 @@ exports.Getcontent=async(req,res)=>{
       
     var title= req.body.Title;
     var discription= req.body.Discription;
+    const now=new Date();
+    const value = date.format(now,'YYYY/MM/DD HH:mm:ss');
     await client.connect();
     const body ={
         "Title": title,
         "Discription": discription,
-        "timestamp": new Date()
+        "timestamp": value
         };
         db.collection("contents").insertOne(body, function(err, res) 
         {  
